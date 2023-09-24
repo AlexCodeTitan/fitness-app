@@ -1,46 +1,45 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
-import Login from "./Pages/Login";
-import { auth } from "./firebase/firebase";
+import Login from "./Pages/Login/Login";
+import { auth, signOutUser } from "./firebase/firebase";
 import { useDispatch } from "react-redux";
-import { setError, setLoading, setUser } from "./redux/userSlice";
+import { selectUser, setLoading, setUser, signOut } from "./redux/userSlice";
+import SignUp from "./Pages/SignUp";
+import { useSelector } from "react-redux";
+import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
+  const currentUser = useSelector(selectUser);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(
-      (user) => {
-        dispatch(setUser(user));
-        dispatch(setLoading(false));
-      },
-      (error) => {
-        dispatch(setError(error.message));
-        dispatch(setLoading(false));
-      }
-    );
-
-    return () => unsubscribe();
-  }, [dispatch]);
+  const handleSignOut = async () => {
+    await signOutUser();
+    dispatch(signOut());
+  };
 
   return (
-    <div>
-      <nav>
+    <>
+      {/* <nav>
         <ul>
           <li>
-            <Link to="/">Login</Link>
+            {currentUser ? (
+              <button onClick={handleSignOut}>Log-Out</button>
+            ) : (
+              <Link to="/">Login</Link>
+            )}
           </li>
           <li>
             <Link to="/home">User Home</Link>
           </li>
         </ul>
-      </nav>
+      </nav> */}
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<h1>Home</h1>} />
+        <Route path="/login" index element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/" element={<PrivateRoute element={<h1>Home</h1>} />} />
       </Routes>
-    </div>
+    </>
   );
 }
 
