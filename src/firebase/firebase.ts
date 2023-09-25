@@ -18,6 +18,8 @@ import {
 } from "firebase/firestore";
 import { AppUser } from "../redux/userSlice";
 
+VITE_FIREBASE_KEY = AIzaSyBd7NGMCAAMSHyLBzm3oRS4G_XT0AC8vpA;
+
 const firebaseKey = import.meta.env.VITE_FIREBASE_KEY;
 
 // Firebase configuration
