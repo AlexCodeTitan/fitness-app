@@ -1,22 +1,24 @@
 import styled from "styled-components";
 
 type ButtonContainerProps = {
-  customType?: string;
-  width?: string;
+  $customType?: string;
+  size?: string;
 };
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
   ${(props) =>
-    props.width === "sm"
+    props.size === "sm"
       ? "width: 8rem; font-size: 0.9rem;"
-      : props.width === "md"
+      : props.size === "md"
       ? "width: 12rem; height: 2.8rem; font-size: 1rem;"
-      : props.width === "xl"
+      : props.size === "xl"
       ? "width: 12rem; height: 3rem; font-size: 1rem;"
       : "width: fit-content;"}
   ${(props) =>
-    props.customType === "google"
+    props.$customType === "google"
       ? "width: 70%; height: 3rem; font-size: 1rem; background-color: #4fb2b6; color: #e0e9e4;"
+      : props.$customType === "secondary"
+      ? "background-color: #242423; color: #cfdbd5;"
       : "background-color: #f5cb5c; color: #242423;"}
 
   min-height: 2.2rem;
@@ -29,10 +31,12 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   cursor: pointer;
 
   &:hover {
-    transition: 0.5s;
+    transition: 0.3s;
     ${(props) =>
-      props.customType === "google"
+      props.$customType === "google"
         ? "background-color: #03989E"
-        : "background-color: #eeb927;"}
+        : props.$customType === "secondary"
+        ? "background-color: #4e4e4d;"
+        : "background-color: #eeb71e;"}
   }
 `;

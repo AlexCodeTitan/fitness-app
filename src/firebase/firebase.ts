@@ -8,12 +8,21 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  addDoc,
+} from "firebase/firestore";
 import { AppUser } from "../redux/userSlice";
+
+const firebaseKey = import.meta.env.VITE_FIREBASE_KEY;
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBd7NGMCAAMSHyLBzm3oRS4G_XT0AC8vpA",
+  apiKey: firebaseKey,
   authDomain: "fitness-app-982b9.firebaseapp.com",
   projectId: "fitness-app-982b9",
   storageBucket: "fitness-app-982b9.appspot.com",
@@ -34,6 +43,78 @@ provider.setCustomParameters({
 export const auth = getAuth(firebaseApp);
 export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
 export const db = getFirestore();
+
+// Test creating mock-database
+
+export const createTestUserDocument = async (
+  userAuth: any,
+  additionalInformation?: object
+) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  const userSnapshot = await getDoc(userDocRef);
+
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+        ...additionalInformation,
+      });
+
+      // Add mock meal data
+      const meals = [
+        {
+          name: "Breakfast",
+          items: [
+            {
+              foodName: "Eggs",
+              calories: 68,
+            },
+            {
+              foodName: "Bacon",
+              calories: 42,
+            },
+          ],
+          date: createdAt,
+        },
+        // ... additional mock meals if desired
+      ];
+      const mealRef = collection(userDocRef, "meals");
+      for (let meal of meals) {
+        await addDoc(mealRef, meal);
+      }
+
+      // Add mock bodyMeasurement data
+      const bodyMeasurements = {
+        weight: 70, // in kg
+        height: 180, // in cm
+        date: createdAt,
+        // ... other mock measurements
+      };
+      const bodyMeasurementsRef = collection(userDocRef, "bodyMeasurements");
+      await addDoc(bodyMeasurementsRef, bodyMeasurements);
+
+      // Add mock notes data
+      const notes = {
+        content: "This is a test note.",
+        date: createdAt,
+      };
+      const notesRef = collection(userDocRef, "notes");
+      await addDoc(notesRef, notes);
+
+      // ... additional mock data as needed
+    } catch (error) {
+      console.log("error creating user", error);
+    }
+  }
+
+  return userDocRef;
+};
 
 // Creating user doc from sign up
 export const createUserDocumentFromAuth = async (
