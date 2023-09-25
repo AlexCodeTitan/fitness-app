@@ -23,7 +23,7 @@ The app is currently in active development. There might be functionalities that 
 
 ## Contribution
 
-If you'd like to contribute, provide feedback, or report bugs, please open an issue on our [GitHub repository](#Your-GitHub-Repo-Link-Here). We appreciate the community's support and contributions as we work to make this app a valuable tool for fitness enthusiasts.
+If you'd like to contribute, provide feedback, or report bugs, please open an issue on our [GitHub repository](https://github.com/AlexCodeTitan/fitness-app). We appreciate the community's support and contributions as we work to make this app a valuable tool for fitness enthusiasts.
 
 ## Note
 
