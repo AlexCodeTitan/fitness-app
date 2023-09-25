@@ -5,17 +5,17 @@ type BaseButtonProps = React.ComponentPropsWithoutRef<"button">;
 
 interface ButtonProps extends BaseButtonProps {
   customType?: string;
-  width?: string;
+  size?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
   customType,
   children,
-  width,
+  size,
   ...otherProps
 }) => {
   return (
-    <ButtonContainer {...otherProps} customType={customType} width={width}>
+    <ButtonContainer {...otherProps} $customType={customType} size={size}>
       {children}
     </ButtonContainer>
   );

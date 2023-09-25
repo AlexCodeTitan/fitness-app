@@ -1,12 +1,18 @@
 import { useState } from "react";
 import {
   createAuthUserWithEmailAndPassword,
+  createTestUserDocument,
   createUserDocumentFromAuth,
-} from "../firebase/firebase";
-import FormInput from "../Components/FormInput/FormInput";
+  signInAuthUserWithEmailAndPassword,
+} from "../../firebase/firebase";
+import FormInput from "../../Components/FormInput/FormInput";
 import { useDispatch } from "react-redux";
-import { selectUser, setUser } from "../redux/userSlice";
-import { useSelector } from "react-redux";
+import { AppUser, setUser } from "../../redux/userSlice";
+import { SignUpContainer, SignUpRightContainer } from "./SignUp.styles";
+import { AuthForm, ButtonsWrapper } from "../Login/Login.styles";
+import Button from "../../Components/CustomButton/Button";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type FormFields = {
   displayName: string;
@@ -22,9 +28,13 @@ const defaultFormFields: FormFields = {
   confirmPassword: "",
 };
 
-const SignUp = () => {
+type SignUpPropTypes = {
+  setSignUpScreen: (value: boolean) => void;
+};
+
+const SignUp: React.FC<SignUpPropTypes> = ({ setSignUpScreen }) => {
   const dispatch = useDispatch();
-  const newUser = useSelector(selectUser);
+  const navigate = useNavigate();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
@@ -45,14 +55,32 @@ const SignUp = () => {
         email,
         password
       );
-      dispatch(setUser(user));
+      // await createUserDocumentFromAuth(user, { displayName });
+      await createTestUserDocument(user, { displayName });
+
       console.log(user);
 
-      console.log(newUser);
+      if (user) {
+        const response = await signInAuthUserWithEmailAndPassword(
+          email,
+          password
+        );
 
-      await createUserDocumentFromAuth(user, { displayName });
-      resetFormFields();
-      alert("User created");
+        if (response) {
+          console.log(response);
+          // Extract and shape the response into AppUser format
+          const userData: AppUser = {
+            uid: response.uid,
+            email: response.email,
+            displayName: response.displayName,
+            // Add any other fields you might need
+          };
+          dispatch(setUser(userData));
+          navigate("/");
+          resetFormFields();
+        }
+      }
+      // dispatch(setUser(user));
     } catch (error: any) {
       if (error.code === "auth/email-already-in-use") {
         alert("A user with this email already exists");
@@ -73,11 +101,11 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <h1>Sign up with email & password</h1>
-      <form onSubmit={handleSignUp}>
+    <SignUpContainer>
+      <h1>Please Sign Up here</h1>
+      <AuthForm onSubmit={handleSignUp}>
         <FormInput
-          label="Display Name"
+          placeholder="Display Name"
           type="text"
           required
           name="displayName"
@@ -86,7 +114,7 @@ const SignUp = () => {
         />
 
         <FormInput
-          label="Email"
+          placeholder="Email"
           type="email"
           required
           name="email"
@@ -95,7 +123,7 @@ const SignUp = () => {
         />
 
         <FormInput
-          label="Password"
+          placeholder="Password"
           type="password"
           required
           name="password"
@@ -104,17 +132,28 @@ const SignUp = () => {
         />
 
         <FormInput
-          label="Confirm Password"
+          placeholder="Confirm Password"
           type="password"
           required
           name="confirmPassword"
           value={confirmPassword}
           onChange={handleChange}
         />
-
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
+        <ButtonsWrapper>
+          <Button type="submit" size="xl">
+            Sign Up
+          </Button>
+          <Button
+            type="button"
+            size="xl"
+            customType="secondary"
+            onClick={() => setSignUpScreen(false)}
+          >
+            Back
+          </Button>
+        </ButtonsWrapper>
+      </AuthForm>
+    </SignUpContainer>
   );
 };
 
