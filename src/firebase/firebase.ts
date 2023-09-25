@@ -18,9 +18,11 @@ import {
 } from "firebase/firestore";
 import { AppUser } from "../redux/userSlice";
 
+const firebaseKey = import.meta.env.VITE_FIREBASE_KEY;
+
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBd7NGMCAAMSHyLBzm3oRS4G_XT0AC8vpA",
+  apiKey: firebaseKey,
   authDomain: "fitness-app-982b9.firebaseapp.com",
   projectId: "fitness-app-982b9",
   storageBucket: "fitness-app-982b9.appspot.com",
