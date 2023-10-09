@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { selectUser, signOut } from "../../redux/userSlice";
 import { signOutUser } from "../../firebase/firebase";
 import { fetchUserDataAndMeals } from "../../utils/mealsfetch";
+import SideBar from "./../../Components/SideBar/SideBar";
+import { HomeWrapper } from "./Home.styles";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,13 +20,14 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <div>
+    <HomeWrapper>
+      <SideBar />
+      {/* <div>
         <h1>{currentUser?.displayName}</h1>
         <button onClick={handleSignOut}>Log-Out</button>
         <button onClick={handleFetchMeals}>Fetch Meals</button>
-      </div>
-    </div>
+      </div> */}
+    </HomeWrapper>
   );
 };
 
