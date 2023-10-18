@@ -5,6 +5,15 @@ export const DashboardWrapper = styled.div`
   height: 100%;
 
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   gap: 30px;
+`;
+
+export const DashboardRow = styled.div`
+  width: 100%;
+  height: 30%;
+  gap: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;

@@ -14,9 +14,9 @@ type NavButtonProps = {
 
 const NavButton = ({ type }: NavButtonProps) => {
   return (
-    <NavButtonContainer as={Link} to={`/${type === "signout" ? "" : type}`}>
+    <NavButtonContainer as={Link} to={`${type === "signout" ? "" : type}`}>
       <IconContainer>
-        {type === "home" ? (
+        {type === "dashboard" ? (
           <FaHouse size={25} />
         ) : type === "notes" ? (
           <FaNoteSticky size={25} />

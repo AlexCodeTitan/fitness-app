@@ -14,7 +14,7 @@ export const CardContainer = styled.div<CardContainerProps>`
       ? "calc(40% - 20px)"
       : "calc(50% - 20px)"};
   min-width: 350px;
-  height: 30%;
+  height: 100%;
   padding: 12px 16px;
 
   background-color: #333533;
