@@ -76,7 +76,7 @@ const SignUp: React.FC<SignUpPropTypes> = ({ setSignUpScreen }) => {
             // Add any other fields you might need
           };
           dispatch(setUser(userData));
-          navigate("/");
+          navigate("/home");
           resetFormFields();
         }
       }

@@ -3,15 +3,23 @@ import styled from "styled-components";
 export const SideBarContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  /* justify-content: space-between; */
-  gap: 16px;
+  gap: 60px;
   height: 100%;
+  min-width: 240px;
   width: 13%;
-  padding: 12px;
+  padding: 20px 12px;
 
   border-radius: 16px;
   background-color: #333533;
+`;
+
+export const SideBarHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 `;
 
 export const ImageContainer = styled.div`
@@ -40,25 +48,5 @@ export const SideBarTitle = styled.div`
 `;
 
 export const NavContainer = styled.div``;
-
-export const InfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 20%;
-`;
-
-export const InfoItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-
-  span:first-of-type {
-    color: #f5cb5c;
-  }
-`;
 
 export const SignOutButton = styled.div``;
