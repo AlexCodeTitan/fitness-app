@@ -31,6 +31,7 @@ body {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 a:visited {
@@ -40,4 +41,5 @@ a:visited {
 
 a:link {
   text-decoration: none;
+  color: inherit;
 }

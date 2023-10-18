@@ -10,7 +10,7 @@ import {
 
 const CalorieGraphCard = ({
   totalCalories = 2934,
-  consumedCalories = 2916,
+  consumedCalories = 2116,
 }) => {
   const radius = 80;
   const strokeWidth = 14;
@@ -21,7 +21,7 @@ const CalorieGraphCard = ({
 
   return (
     <CalorieGraphContainer size="small">
-      <Header>Daily's calorie goal</Header>
+      <Header>Today's Calorie Goal</Header>
       <Circle viewBox="0 -10 200 200">
         <Track cx="100" cy="100" r={radius} />
         <Fill
@@ -32,7 +32,7 @@ const CalorieGraphCard = ({
           offset={offset}
           transform="rotate(-90 100 100)"
         />
-        <Text x="50%" y="50%" textAnchor="middle" dy=".3em" dx="-20">
+        <Text x="50%" y="50%" textAnchor="middle" dy=".3em" dx="-25">
           {consumedCalories}&nbsp;/
         </Text>
         <TotalCaloriesText
@@ -40,7 +40,7 @@ const CalorieGraphCard = ({
           y="50%"
           textAnchor="middle"
           dy=".3em"
-          dx="20"
+          dx="25"
         >
           &nbsp;{totalCalories}
         </TotalCaloriesText>

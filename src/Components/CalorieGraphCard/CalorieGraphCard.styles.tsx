@@ -24,27 +24,27 @@ export const Circle = styled.svg`
 export const Track = styled.circle`
   stroke: #333533;
   fill: none;
-  stroke-width: 13;
+  stroke-width: 15;
 `;
 
 export const Fill = styled.circle<FillProps>`
   stroke: #cfdbd5;
   /* fill: none; */
   fill: #333533;
-  stroke-width: 14;
+  stroke-width: 16;
   stroke-linecap: round;
   stroke-dasharray: ${(props) => props.circumference};
   stroke-dashoffset: ${(props) => props.offset};
 `;
 
 export const Text = styled.text`
-  font-size: 16px;
+  font-size: 1.1rem;
   font-weight: 700;
   fill: #cfdbd5;
 `;
 
 export const TotalCaloriesText = styled.text`
-  font-size: 16px;
+  font-size: 1.1rem;
   font-weight: 700;
   fill: #ffd666;
 `;
