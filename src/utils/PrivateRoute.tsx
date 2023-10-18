@@ -10,11 +10,10 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ element }) => {
   const user = useSelector(selectUser);
 
   if (!user) {
-    // Redirect them to login page if not authenticated
     return <Navigate to="/auth" />;
   }
 
-  return element; // Return the element directly
+  return element;
 };
 
 export default PrivateRoute;
