@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a fitness application that aims to help users track their meals and workouts. As of now, it's still in development and is built using technologies like Firebase and React.
+This is a fitness application that aims to help users track their meals and workouts. As of now, it's still in development and is built using Firebase and React with TypeScript.
 
 ## Current Features
 
@@ -20,11 +20,3 @@ The app is currently in active development. There might be functionalities that 
 3. **Analytics**: A dashboard providing insights into the user's health and fitness journey, including trends in calorie intake, workout frequency, and more.
 4. **User Profiles**: Enhanced user profiles to include profile images, bio, and other relevant information.
 5. **Interactive UI**: We're working on creating a more interactive and intuitive UI, with transitions, animations, and a user-friendly design.
-
-## Contribution
-
-If you'd like to contribute, provide feedback, or report bugs, please open an issue on our [GitHub repository](https://github.com/AlexCodeTitan/fitness-app). We appreciate the community's support and contributions as we work to make this app a valuable tool for fitness enthusiasts.
-
-## Note
-
-Please be aware that certain features might be undergoing testing or might be temporarily unavailable as we continuously integrate feedback and make updates.
