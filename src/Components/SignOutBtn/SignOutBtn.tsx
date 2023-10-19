@@ -13,7 +13,7 @@ const SignOutBtn = () => {
   const handleSignOut = async () => {
     await signOutUser();
     dispatch(signOut());
-    navigate("/auth");
+    navigate("/");
   };
 
   return (

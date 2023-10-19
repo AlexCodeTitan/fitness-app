@@ -28,11 +28,15 @@ const userSlice = createSlice({
     setUser: (state, action: PayloadAction<AppUser>) => {
       state.user = action.payload;
       state.loading = false;
+      localStorage.setItem("user", JSON.stringify(action.payload));
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
-    signOut: () => initialState,
+    signOut: () => {
+      localStorage.removeItem("user");
+      return initialState;
+    },
   },
 });
 
