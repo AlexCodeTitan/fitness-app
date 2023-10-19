@@ -7,9 +7,9 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 function App() {
   return (
     <Routes>
-      <Route path="/auth" index element={<AuthPage />} />
+      <Route index element={<AuthPage />} />
       <Route path="/home" element={<PrivateRoute element={<Home />} />}>
-        {/* <Route index element={<Dashboard />} /> */}
+        <Route index element={<Dashboard />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="notes" element={<h1>Notes</h1>} />
         <Route path="workout" element={<h1>Workout</h1>} />

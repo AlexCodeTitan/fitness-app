@@ -43,3 +43,29 @@ a:link {
   text-decoration: none;
   color: inherit;
 }
+
+/* Customize the scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb {
+  background-color: #cfdbd5;
+  border-radius: 6px;
+}
+
+/* Handle on normal state */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #d9e6df;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #242423;
+}
+
+/* Track on active state */
+::-webkit-scrollbar-track:active {
+  background-color: #242423;
+}

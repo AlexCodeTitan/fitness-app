@@ -10,7 +10,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ element }) => {
   const user = useSelector(selectUser);
 
   if (!user) {
-    return <Navigate to="/auth" />;
+    return <Navigate to="/" />;
   }
 
   return element;
