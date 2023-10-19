@@ -7,12 +7,12 @@ type CardContainerProps = {
 export const CardContainer = styled.div<CardContainerProps>`
   width: ${(props) =>
     props.size === "small"
-      ? "calc(20% - 20px)"
+      ? "calc(20% - 10px)"
       : props.size === "medium"
-      ? "calc(30% - 20px)"
+      ? "calc(30% - 10px)"
       : props.size === "large"
-      ? "calc(40% - 20px)"
-      : "calc(50% - 20px)"};
+      ? "calc(40% - 10px)"
+      : "calc(50% - 10px)"};
   min-width: 350px;
   height: 100%;
   padding: 12px 16px;
