@@ -1,5 +1,8 @@
 # Fitness App
 
+![Alt text](src/assets/Dashboard.png)
+
+
 ## Description
 
 This is a fitness application that aims to help users track their meals and workouts. As of now, it's still in development and is built using Firebase and React with TypeScript.
